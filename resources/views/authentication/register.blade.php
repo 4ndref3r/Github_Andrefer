@@ -16,20 +16,79 @@
             <a class="navbar-brand" href="javascript:void(0);"><img src="../assets/images/icon.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">Oculux</a>                                                
         </div>
         <div class="card">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="body">
                 <p class="lead">Crea una cuenta</p>
-                <form class="form-auth-small m-t-20">
+                <form class="form-auth-small m-t-25" method="POST" action="{{ route('register')}}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input name="aPaterno" type="text" class="form-control round" placeholder="Ap. Paterno *">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input name="aMaterno" type="text" class="form-control round" placeholder="Ap. Materno">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="form-group">
+                                <input name="nombres" type="text" class="form-control round" placeholder="Nombres *">
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <input name="ci" type="text" class="form-control round" placeholder="Nro CI *">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <input type="email" class="form-control round" placeholder="Tu correo">
+                        <input name="email" type="email" class="form-control round" placeholder="Tu correo *" required>
                     </div>
                     <div class="form-group">                            
-                        <input type="password" class="form-control round" placeholder="Contraseña">
+                        <input name="password" type="password" class="form-control round" placeholder="Contraseña *" required>
                     </div>
-                    <a href="{{route('mypage.index')}}" class="btn btn-primary btn-round btn-block">Registrar</a>                                
+                    <div class="form-group">                            
+                        <input name="password_confirmation" type="password" class="form-control round" placeholder="Repite la contraseña *" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input name="ingreso" type="date" class="form-control round" placeholder="Fecha Ingreso *">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input name="celular" type="text" class="form-control round" placeholder="Celular *">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-round btn-block">Registrar</button>                                
                 </form>
-                <div class="separator-linethrough"><span>OR</span></div>
-                <button class="btn btn-round btn-signin-social"><i class="fa fa-facebook-official facebook-color"></i> Sign in with Facebook</button>
-                <button class="btn btn-round btn-signin-social"><i class="fa fa-twitter twitter-color"></i> Sign in with Twitter</button>
             </div>
         </div>
     </div>

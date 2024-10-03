@@ -41,16 +41,23 @@ class LoginController extends Controller
         return view('authentication.login');
     }
     function login(Request $request){
-        // Imprimir las credenciales que estás enviando
-        \Log::info('Credenciales ingresadas: ', ['email' => $request->email, 'password' => $request->password]);
         $request->validate([
             'email' =>'required|email',
             'password'=>'required',
         ]);
 
         if(Auth::attempt(['email'=>$request->email, 'password' => $request->password], $request->remember)){
-            \Log::info('Autenticación exitosa');
-            return redirect()->route('mypage.index');
+            $user=Auth::user();
+            session([
+                'user_id'=>$user->id,
+                'user_name'=> Auth::user()->nombres.' '.Auth::user()->apellidoPaterno,
+                'role'=>Auth::user()->rol,
+            ]);
+            if ($user->estado != 1) {
+                Auth::logout();
+                return redirect()->back()->withErrors(['message' => 'Tu cuenta no está activa.']);
+            }
+            return redirect()->route('dashboard.index2');
         }else{
         \Log::warning('Error en la autenticación');
         return redirect()->back()->withErrors([
@@ -58,8 +65,10 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(){
-        Auth::logout(); // Cierra la sesión
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('authentication.login'); // Redirige al login
     }
 }

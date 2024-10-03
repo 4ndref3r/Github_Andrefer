@@ -14,6 +14,8 @@
 
 //Route::get('/', function () { return redirect('mypage/index'); });
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 // Ruta para el formulario de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('authentication.login');
@@ -24,10 +26,13 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 // Ruta para el logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Redirección de la ruta raíz
-Route::get('/', function () {
-    return redirect()->route('authentication.login');
-});
+
+// Ruta para mostrar el formulario de registro
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+// Ruta para manejar el registro del usuario
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
 /* My Page */
 Route::get('mypage', function ()                { return redirect('mypage/index'); });
 Route::get('mypage/index',                      'MypageController@index')->name('mypage.index');
