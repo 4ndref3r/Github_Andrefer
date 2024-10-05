@@ -16,6 +16,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\VerificationController;
 
 // Ruta para el formulario de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('authentication.login');
@@ -33,6 +34,14 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 // Ruta para manejar el registro del usuario
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
+Route::get('/activate/{token}', [VerificationController::class, 'verify'])->name('activate');
+Route::get('/authentication/activation', 'MypageController@index')->name('authentication.activation');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->name('verification.verify')
+    ->middleware(['signed']);
+
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])
+    ->name('verification.resend');
 /* My Page */
 Route::get('mypage', function ()                { return redirect('mypage/index'); });
 Route::get('mypage/index',                      'MypageController@index')->name('mypage.index');
