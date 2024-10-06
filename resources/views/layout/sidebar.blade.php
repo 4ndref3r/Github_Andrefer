@@ -35,7 +35,7 @@
                 <li class="{{ Request::segment(1) === 'projects' ? 'active open' : null }}">
                     <a href="#Project" class="has-arrow"><i class="icon-flag"></i><span>Usuarios</span></a>
                     <ul>
-                        <li class="{{ Request::segment(2) === 'taskboard' ? 'active' : null }}"><a href="{{route('projects.taskboard')}}">Usuarios</a></li>
+                        <li class="{{ Request::segment(2) === 'users' ? 'active' : null }}"><a href="{{route('usuarios.index')}}">Usuarios</a></li>
                         <li class="{{ Request::segment(2) === 'projectlist' ? 'active' : null }}"><a href="{{route('projects.projectlist')}}">Docentes</a></li>
                     </ul>
                 </li>
