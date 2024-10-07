@@ -42,9 +42,10 @@
                 <li class="{{ Request::segment(1) === 'hr' ? 'active open' : null }}">
                     <a href="#Project" class="has-arrow"><i class="icon-umbrella"></i><span>Horarios</span></a>
                     <ul>
-                        <li class="{{ Request::segment(2) === 'hrdashboard' ? 'active' : null }}"><a href="{{route('hr.hrdashboard')}}">Hr Dashboard</a></li>
-                        <li class="{{ Request::segment(2) === 'users' ? 'active' : null }}"><a href="{{route('hr.users')}}">Users</a></li>
-                        <li class="{{ Request::segment(2) === 'departments' ? 'active' : null }}"><a href="{{route('hr.departments')}}">Departments</a></li>
+                        <li class="{{ Request::segment(2) === 'departments' ? 'active' : null }}"><a href="{{route('aulas.index')}}">Aulas</a></li>
+                        <li class="{{ Request::segment(2) === 'events' ? 'active' : null }}"><a href="{{route('grupos.index')}}">Grupos</a></li>
+                        <li class="{{ Request::segment(2) === 'employee' ? 'active' : null }}"><a href="{{route('materias.index')}}">Materias</a></li>
+                        <li class="{{ Request::segment(2) === 'hrdashboard' ? 'active' : null }}"><a href="{{route('hr.hrdashboard')}}">Asignar</a></li>
                         <li class="{{ Request::segment(2) === 'report' ? 'active' : null }}"><a href="{{route('hr.report')}}">Report</a></li>
                     </ul>
                 </li>
