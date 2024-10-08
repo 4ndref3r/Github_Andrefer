@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\MateriaController;
 
 // Ruta para el formulario de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('authentication.login');
@@ -47,6 +48,13 @@ Route::post('/email/verification-notification', [VerificationController::class, 
 Route::get('/hr/departments', [AulaController::class, 'index'])->name('aulas.index');
 Route::post('/register-aulas', [AulaController::class, 'create'])->name('aulas.create');
 Route::post('/update-aulas', [AulaController::class, 'update'])->name('aulas.update');
+
+Route::get('/perfil', [UsuarioController::class, 'show'])->name('perfil.show');
+Route::post('/perfil', [UsuarioController::class, 'udperfil'])->name('perfil.update');
+Route::post('/cambiar-contrasena', [UsuarioController::class, 'changePassword'])->name('perfil.changePassword');
+
+Route::get('/hr/employee', [MateriaController::class, 'index'])->name('materias.index');
+Route::post('/materias', [MateriaController::class, 'store'])->name('materias.store');
 /* My Page */
 Route::get('mypage', function ()                { return redirect('mypage/index'); });
 Route::get('mypage/index',                      'MypageController@index')->name('mypage.index');
