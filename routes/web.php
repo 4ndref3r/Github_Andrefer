@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\GrupoController;
 
 // Ruta para el formulario de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('authentication.login');
@@ -55,6 +56,9 @@ Route::post('/cambiar-contrasena', [UsuarioController::class, 'changePassword'])
 
 Route::get('/hr/employee', [MateriaController::class, 'index'])->name('materias.index');
 Route::post('/materias', [MateriaController::class, 'store'])->name('materias.store');
+
+Route::get('/hr/events', [GrupoController::class, 'index'])->name('grupos.index');
+Route::post('/grupos', [GrupoController::class, 'store'])->name('grupos.store');
 /* My Page */
 Route::get('mypage', function ()                { return redirect('mypage/index'); });
 Route::get('mypage/index',                      'MypageController@index')->name('mypage.index');
