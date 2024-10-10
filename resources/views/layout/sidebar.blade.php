@@ -50,13 +50,11 @@
                     </ul>
                 </li>
                 <li class="{{ Request::segment(1) === 'job' ? 'active open' : null }}">
-                    <a href="#JobPortal" class="has-arrow"><i class="icon-screen-tablet"></i><span>Job Portal</span></a>
+                    <a href="#JobPortal" class="has-arrow"><i class="icon-screen-tablet"></i><span>Asistencia</span></a>
                     <ul>
-                        <li class="{{ Request::segment(2) === 'jobdashboard' ? 'active' : null }}"><a href="{{route('job.jobdashboard')}}">Dashboard</a></li>
-                        <li class="{{ Request::segment(2) === 'positions' ? 'active' : null }}"><a href="{{route('job.positions')}}">Positions</a></li>
-                        <li class="{{ Request::segment(2) === 'applicants' ? 'active' : null }}"><a href="{{route('job.applicants')}}">Applicants</a></li>
-                        <li class="{{ Request::segment(2) === 'resumes' ? 'active' : null }}"><a href="{{route('job.resumes')}}">Resumes</a></li>
-                        <li class="{{ Request::segment(2) === 'jobsettings' ? 'active' : null }}"><a href="{{route('job.jobsettings')}}">Job Settings</a></li>
+                        <li class="{{ Request::segment(2) === 'jobdashboard' ? 'active' : null }}"><a href="{{route('config.reglas')}}">Reglas</a></li>
+                        <li class="{{ Request::segment(2) === 'positions' ? 'active' : null }}"><a href="{{route('job.positions')}}">Control</a></li>
+                        <li class="{{ Request::segment(2) === 'applicants' ? 'active' : null }}"><a href="{{route('job.applicants')}}">Reemplazos</a></li>
                     </ul>
                 </li>
                 <li class="header">Nómina y Pagos</li>
@@ -64,13 +62,13 @@
                     <a href="#Contact" class="has-arrow"><i class="icon-book-open"></i><span>Pagos</span></a>
                     <ul>
                         <li class="{{ Request::segment(2) === 'contact' ? 'active' : null }}"><a href="{{route('contact.contact')}}">Renumeración</a></li>
-                        <li class="{{ Request::segment(2) === 'contact2' ? 'active' : null }}"><a href="{{route('contact.contact2')}}">Contratos</a></li>
+                        <li class="{{ Request::segment(2) === 'contact2' ? 'active' : null }}"><a href="{{route('contact.contact2')}}">Anticipo</a></li>
                     </ul>
                 </li>
                 <li class="{{ Request::segment(1) === 'email' ? 'active open' : null }}">
-                    <a href="#Contact" class="has-arrow"><i class="icon-drawer"></i><span>Email</span></a>
+                    <a href="#Contact" class="has-arrow"><i class="icon-drawer"></i><span>Nóminas</span></a>
                     <ul>                        
-                        <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('email.inbox')}}">Inbox</a></li>
+                        <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('email.inbox')}}">Contrato</a></li>
                         <li class="{{ Request::segment(2) === 'compose' ? 'active' : null }}"><a href="{{route('email.compose')}}">Compose</a></li>
                         <li class="{{ Request::segment(2) === 'inboxdetail' ? 'active' : null }}"><a href="{{route('email.inboxdetail')}}">Inbox Detail</a></li>
                     </ul>

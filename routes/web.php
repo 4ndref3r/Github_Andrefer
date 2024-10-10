@@ -21,6 +21,20 @@ use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\GrupoController;
 
+Route::get('/',function(){
+    if (Auth::check()){
+        $user = Auth::user();
+        if ($user->rol==='SUPER_ADMIN') {
+            return redirect()->route('dashboard.index2');
+        } elseif ($user->rol === 'ADMIN') {
+            return redirect()->route('job.resumes');
+        } elseif ($user->rol === 'DOCENTE') {
+            return redirect()->route('dashboard.index2');
+        }
+        return redirect()->route('authentication.login');
+    }
+    return redirect()->route('authentication.login');
+});
 // Ruta para el formulario de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('authentication.login');
 
