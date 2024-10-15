@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\ReglaAsistenciaController;
 
 Route::get('/',function(){
     if (Auth::check()){
@@ -73,6 +74,9 @@ Route::post('/materias', [MateriaController::class, 'store'])->name('materias.st
 
 Route::get('/hr/events', [GrupoController::class, 'index'])->name('grupos.index');
 Route::post('/grupos', [GrupoController::class, 'store'])->name('grupos.store');
+
+Route::get('/configuracion/reglas', [ReglaAsistenciaController::class, 'index'])->name('config.reglas');
+Route::post('/configuracion/reglas/update', [ReglaAsistenciaController::class, 'update'])->name('config.update');
 /* My Page */
 Route::get('mypage', function ()                { return redirect('mypage/index'); });
 Route::get('mypage/index',                      'MypageController@index')->name('mypage.index');
